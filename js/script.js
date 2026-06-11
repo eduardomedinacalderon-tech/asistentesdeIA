@@ -10,14 +10,18 @@ if (buscador) {
 
         const tarjetas = document.querySelectorAll(".tarjeta");
 
-        tarjetas.forEach(tarjeta => {
+        tarjetas.forEach((tarjeta) => {
 
             const nombre = tarjeta.dataset.nombre.toLowerCase();
 
             if (nombre.includes(texto)) {
+
                 tarjeta.style.display = "block";
+
             } else {
+
                 tarjeta.style.display = "none";
+
             }
 
         });
@@ -33,11 +37,11 @@ const formulario = document.getElementById("formulario");
 
 if (formulario) {
 
-    formulario.addEventListener("submit", function(e) {
+    formulario.addEventListener("submit", function(e){
 
         e.preventDefault();
 
-        alert("Gracias por tu mensaje. Se ha enviado correctamente.");
+        alert("Gracias por tu mensaje. Tu información ha sido enviada correctamente.");
 
         formulario.reset();
 
@@ -46,7 +50,11 @@ if (formulario) {
 }
 
 
-// ANIMACIÓN DE APARICIÓN
+// APARICIÓN SUAVE DE TARJETAS
+
+const elementos = document.querySelectorAll(
+    ".tarjeta, .categorias div, .estadisticas div"
+);
 
 const observador = new IntersectionObserver((entradas) => {
 
@@ -66,15 +74,11 @@ const observador = new IntersectionObserver((entradas) => {
 });
 
 
-const elementos = document.querySelectorAll(
-    ".tarjeta, .categoria, .estadisticas div"
-);
-
 elementos.forEach((elemento) => {
 
     elemento.style.opacity = "0";
     elemento.style.transform = "translateY(40px)";
-    elemento.style.transition = "0.8s";
+    elemento.style.transition = "all 0.8s ease";
 
     observador.observe(elemento);
 
@@ -85,44 +89,48 @@ elementos.forEach((elemento) => {
 
 const numeros = document.querySelectorAll(".estadisticas h3");
 
-numeros.forEach(numero => {
+numeros.forEach((numero) => {
 
     const textoOriginal = numero.innerText;
 
-    const valor = parseInt(textoOriginal);
+    const valorFinal = parseInt(textoOriginal);
 
-    if (!isNaN(valor)) {
+    if (!isNaN(valorFinal)) {
 
         let contador = 0;
 
-        const incremento = Math.ceil(valor / 50);
+        const incremento = Math.ceil(valorFinal / 50);
 
         const intervalo = setInterval(() => {
 
             contador += incremento;
 
-            if (contador >= valor) {
+            if (contador >= valorFinal) {
 
-                contador = valor;
+                contador = valorFinal;
 
                 clearInterval(intervalo);
 
                 if (textoOriginal.includes("%")) {
-                    numero.innerText = valor + "%";
-                } else if (textoOriginal.includes("+")) {
-                    numero.innerText = valor + "+";
+
+                    numero.innerText = contador + "%";
+
                 } else {
-                    numero.innerText = valor;
+
+                    numero.innerText = contador;
+
                 }
 
             } else {
 
                 if (textoOriginal.includes("%")) {
+
                     numero.innerText = contador + "%";
-                } else if (textoOriginal.includes("+")) {
-                    numero.innerText = contador + "+";
+
                 } else {
+
                     numero.innerText = contador;
+
                 }
 
             }
@@ -145,24 +153,30 @@ document.body.appendChild(botonArriba);
 botonArriba.style.position = "fixed";
 botonArriba.style.bottom = "25px";
 botonArriba.style.right = "25px";
-botonArriba.style.width = "50px";
-botonArriba.style.height = "50px";
+botonArriba.style.width = "55px";
+botonArriba.style.height = "55px";
 botonArriba.style.borderRadius = "50%";
 botonArriba.style.border = "none";
-botonArriba.style.background = "#f4c542";
-botonArriba.style.color = "#111936";
-botonArriba.style.fontSize = "22px";
+botonArriba.style.background = "#ffd84d";
+botonArriba.style.color = "#08111f";
+botonArriba.style.fontSize = "24px";
+botonArriba.style.fontWeight = "bold";
 botonArriba.style.cursor = "pointer";
 botonArriba.style.display = "none";
-botonArriba.style.zIndex = "1000";
+botonArriba.style.zIndex = "9999";
+botonArriba.style.boxShadow = "0 0 20px rgba(255,216,77,0.5)";
 
 
 window.addEventListener("scroll", () => {
 
     if (window.scrollY > 400) {
+
         botonArriba.style.display = "block";
+
     } else {
+
         botonArriba.style.display = "none";
+
     }
 
 });
@@ -176,3 +190,25 @@ botonArriba.addEventListener("click", () => {
     });
 
 });
+
+
+// EFECTO BRILLO EN EL TÍTULO
+
+const titulo = document.querySelector(".contenido-portada h1");
+
+if (titulo) {
+
+    setInterval(() => {
+
+        titulo.style.textShadow =
+            "0 0 20px rgba(255,216,77,0.8)";
+
+        setTimeout(() => {
+
+            titulo.style.textShadow = "none";
+
+        }, 1000);
+
+    }, 3000);
+
+}
