@@ -1,190 +1,178 @@
-// FORMULARIO DE CONTACTO
+// BUSCADOR DE IA
+
+const buscador = document.getElementById("buscarIA");
+
+if (buscador) {
+
+    buscador.addEventListener("keyup", () => {
+
+        const texto = buscador.value.toLowerCase();
+
+        const tarjetas = document.querySelectorAll(".tarjeta");
+
+        tarjetas.forEach(tarjeta => {
+
+            const nombre = tarjeta.dataset.nombre.toLowerCase();
+
+            if (nombre.includes(texto)) {
+                tarjeta.style.display = "block";
+            } else {
+                tarjeta.style.display = "none";
+            }
+
+        });
+
+    });
+
+}
+
+
+// FORMULARIO
 
 const formulario = document.getElementById("formulario");
 
 if (formulario) {
-    formulario.addEventListener("submit", function (e) {
+
+    formulario.addEventListener("submit", function(e) {
+
         e.preventDefault();
 
         alert("Gracias por tu mensaje. Se ha enviado correctamente.");
 
         formulario.reset();
+
     });
+
 }
 
 
-// EFECTO CONFETI
+// ANIMACIÓN DE APARICIÓN
 
-const canvas = document.getElementById("confeti");
+const observador = new IntersectionObserver((entradas) => {
 
-if (canvas) {
+    entradas.forEach((entrada) => {
 
-    const ctx = canvas.getContext("2d");
+        if (entrada.isIntersecting) {
 
-    let confetis = [];
-    let animacion = null;
-    let tiempoConfeti = null;
-
-    function ajustarCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
-    ajustarCanvas();
-
-    function crearConfeti() {
-
-        confetis = [];
-
-        for (let i = 0; i < 180; i++) {
-
-            confetis.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height - canvas.height,
-                tamaño: Math.random() * 9 + 4,
-                velocidadY: Math.random() * 5 + 2,
-                velocidadX: Math.random() * 3 - 1.5,
-                rotacion: Math.random() * 360,
-                color: `hsl(${Math.random() * 360},100%,55%)`
-            });
+            entrada.target.style.opacity = "1";
+            entrada.target.style.transform = "translateY(0px)";
 
         }
-    }
 
-    function dibujarConfeti() {
+    });
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+}, {
+    threshold: 0.15
+});
 
-        confetis.forEach(function (c) {
 
-            ctx.save();
+const elementos = document.querySelectorAll(
+    ".tarjeta, .categoria, .estadisticas div"
+);
 
-            ctx.translate(c.x, c.y);
-            ctx.rotate(c.rotacion * Math.PI / 180);
+elementos.forEach((elemento) => {
 
-            ctx.fillStyle = c.color;
-            ctx.fillRect(
-                -c.tamaño / 2,
-                -c.tamaño / 2,
-                c.tamaño,
-                c.tamaño
-            );
+    elemento.style.opacity = "0";
+    elemento.style.transform = "translateY(40px)";
+    elemento.style.transition = "0.8s";
 
-            ctx.restore();
+    observador.observe(elemento);
 
-            c.y += c.velocidadY;
-            c.x += c.velocidadX;
-            c.rotacion += 5;
+});
 
-            if (c.y > canvas.height) {
-                c.y = -20;
-                c.x = Math.random() * canvas.width;
+
+// CONTADOR DE ESTADÍSTICAS
+
+const numeros = document.querySelectorAll(".estadisticas h3");
+
+numeros.forEach(numero => {
+
+    const textoOriginal = numero.innerText;
+
+    const valor = parseInt(textoOriginal);
+
+    if (!isNaN(valor)) {
+
+        let contador = 0;
+
+        const incremento = Math.ceil(valor / 50);
+
+        const intervalo = setInterval(() => {
+
+            contador += incremento;
+
+            if (contador >= valor) {
+
+                contador = valor;
+
+                clearInterval(intervalo);
+
+                if (textoOriginal.includes("%")) {
+                    numero.innerText = valor + "%";
+                } else if (textoOriginal.includes("+")) {
+                    numero.innerText = valor + "+";
+                } else {
+                    numero.innerText = valor;
+                }
+
+            } else {
+
+                if (textoOriginal.includes("%")) {
+                    numero.innerText = contador + "%";
+                } else if (textoOriginal.includes("+")) {
+                    numero.innerText = contador + "+";
+                } else {
+                    numero.innerText = contador;
+                }
+
             }
 
-        });
+        }, 30);
+
     }
-
-    function animarConfeti() {
-        dibujarConfeti();
-        animacion = requestAnimationFrame(animarConfeti);
-    }
-
-    window.lanzarConfeti = function () {
-
-        if (animacion) {
-            cancelAnimationFrame(animacion);
-        }
-
-        if (tiempoConfeti) {
-            clearTimeout(tiempoConfeti);
-        }
-
-        crearConfeti();
-        animarConfeti();
-
-        tiempoConfeti = setTimeout(function () {
-
-            cancelAnimationFrame(animacion);
-
-            animacion = null;
-            tiempoConfeti = null;
-
-            ctx.clearRect(
-                0,
-                0,
-                canvas.width,
-                canvas.height
-            );
-
-        }, 4000);
-    };
-
-    window.addEventListener("resize", ajustarCanvas);
-}
-
-
-// ANIMACIÓN DE ENTRADA
-
-const tarjetas = document.querySelectorAll(".tarjeta");
-
-tarjetas.forEach(function (tarjeta, index) {
-
-    tarjeta.style.opacity = "0";
-    tarjeta.style.transform = "translateY(30px)";
-
-    setTimeout(function () {
-
-        tarjeta.style.transition = "0.6s";
-        tarjeta.style.opacity = "1";
-        tarjeta.style.transform = "translateY(0)";
-
-    }, index * 120);
 
 });
 
 
-// NAVEGACIÓN SUAVE A SECCIONES
+// BOTÓN VOLVER ARRIBA
 
-document.querySelectorAll('a[href^="#"]').forEach(function(enlace){
+const botonArriba = document.createElement("button");
 
-    enlace.addEventListener("click", function(e){
+botonArriba.innerHTML = "↑";
 
-        const destino = document.querySelector(
-            this.getAttribute("href")
-        );
+document.body.appendChild(botonArriba);
 
-        if(destino){
+botonArriba.style.position = "fixed";
+botonArriba.style.bottom = "25px";
+botonArriba.style.right = "25px";
+botonArriba.style.width = "50px";
+botonArriba.style.height = "50px";
+botonArriba.style.borderRadius = "50%";
+botonArriba.style.border = "none";
+botonArriba.style.background = "#f4c542";
+botonArriba.style.color = "#111936";
+botonArriba.style.fontSize = "22px";
+botonArriba.style.cursor = "pointer";
+botonArriba.style.display = "none";
+botonArriba.style.zIndex = "1000";
 
-            e.preventDefault();
 
-            destino.scrollIntoView({
-                behavior:"smooth",
-                block:"start"
-            });
+window.addEventListener("scroll", () => {
 
-            destino.style.transition = "0.5s";
-            destino.style.boxShadow =
-            "0 0 35px rgba(56,189,248,.8)";
+    if (window.scrollY > 400) {
+        botonArriba.style.display = "block";
+    } else {
+        botonArriba.style.display = "none";
+    }
 
-            setTimeout(function(){
+});
 
-                destino.style.boxShadow = "";
 
-            },1500);
+botonArriba.addEventListener("click", () => {
 
-        }
-
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
     });
-
-});
-
-
-// MENSAJE EN CONSOLA
-
-window.addEventListener("load", function () {
-
-    console.log(
-        "Página cargada correctamente"
-    );
 
 });
