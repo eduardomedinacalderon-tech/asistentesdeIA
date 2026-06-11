@@ -251,4 +251,4 @@ botonArriba.addEventListener("click", function () {
 
 window.addEventListener("load", function () {
     console.log("Página cargada correctamente");
-});   este es js 
+});   
