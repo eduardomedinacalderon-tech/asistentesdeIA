@@ -1,0 +1,527 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    color: white;
+    background: linear-gradient(45deg, #06111f, #123c69, #0b7285, #5b21b6);
+    background-size: 400% 400%;
+    animation: fondoColores 10s infinite alternate;
+}
+
+@keyframes fondoColores {
+    0% {
+        background-position: left;
+    }
+
+    100% {
+        background-position: right;
+    }
+}
+
+.contenedor {
+    width: 92%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 35px 0;
+    position: relative;
+    z-index: 5;
+}
+
+.encabezado {
+    text-align: center;
+    margin-bottom: 35px;
+    padding: 25px;
+    border-radius: 25px;
+    background: rgba(2, 6, 23, 0.45);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.encabezado h1 {
+    font-size: 40px;
+    font-weight: 700;
+    text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+.encabezado h2 {
+    font-size: 24px;
+    margin-top: 10px;
+    color: #bae6fd;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+}
+
+.tarjeta {
+    min-height: 360px;
+    padding: 25px;
+    border-radius: 24px;
+    text-decoration: none;
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    background: rgba(15, 23, 42, 0.82);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+    transition: 0.35s;
+
+    position: relative;
+    z-index: 20;
+    cursor: pointer;
+}
+
+.tarjeta:hover {
+    transform: translateY(-10px) scale(1.02);
+    background: rgba(56, 189, 248, 0.24);
+    box-shadow: 0 15px 30px rgba(56, 189, 248, 0.35);
+}
+
+.tarjeta img {
+    width: 155px;
+    height: 155px;
+    object-fit: contain;
+    border-radius: 22px;
+    margin-bottom: 16px;
+    background: #020617;
+    padding: 8px;
+    pointer-events: none;
+}
+
+.tarjeta h3 {
+    font-size: 28px;
+    color: #38bdf8;
+    margin-bottom: 10px;
+    pointer-events: none;
+}
+
+.tarjeta p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 18px;
+    pointer-events: none;
+}
+
+.tarjeta span {
+    margin-top: auto;
+    padding: 10px 22px;
+    background: #38bdf8;
+    color: #020617;
+    border-radius: 30px;
+    font-weight: 700;
+    transition: 0.3s;
+    pointer-events: none;
+}
+
+.tarjeta:hover span {
+    background: white;
+    transform: scale(1.05);
+}
+
+.multimedia,
+.contacto {
+    margin-top: 45px;
+    padding: 35px;
+    border-radius: 24px;
+    text-align: center;
+    background: rgba(15, 23, 42, 0.86);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.multimedia h2,
+.contacto h2 {
+    color: #38bdf8;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.imagenes {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-bottom: 30px;
+}
+
+.imagenes img {
+    width: 300px;
+    height: 220px;
+    object-fit: contain;
+    border-radius: 18px;
+    transition: 0.3s;
+    background: #020617;
+    padding: 8px;
+}
+
+.imagenes img:hover {
+    transform: scale(1.07);
+}
+
+iframe {
+    width: 90%;
+    max-width: 850px;
+    height: 430px;
+    border: none;
+    border-radius: 18px;
+}
+
+.redes,
+.iconos-finales {
+    margin: 35px 0;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.redes a,
+.iconos-finales a,
+.iconos-finales button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    color: white;
+    font-size: 28px;
+    background: rgba(2, 6, 23, 0.85);
+    cursor: pointer;
+    transition: 0.3s;
+
+    position: relative;
+    z-index: 30;
+}
+
+.redes a:hover,
+.iconos-finales a:hover,
+.iconos-finales button:hover {
+    background: #38bdf8;
+    color: #020617;
+    transform: translateY(-8px) rotate(8deg);
+}
+
+.datos {
+    text-align: center;
+    margin: 35px 0;
+    padding: 25px;
+    border-radius: 22px;
+    background: rgba(2, 6, 23, 0.45);
+}
+
+.datos h2 {
+    font-size: 28px;
+}
+
+.datos h3 {
+    font-size: 18px;
+    color: #dbeafe;
+    margin-top: 10px;
+}
+
+form {
+    max-width: 650px;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+input,
+textarea {
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+}
+
+textarea {
+    height: 130px;
+    resize: none;
+}
+
+form button {
+    padding: 14px;
+    border: none;
+    border-radius: 30px;
+    background: #38bdf8;
+    color: #020617;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+form button:hover {
+    background: white;
+    transform: scale(1.05);
+}
+
+#confeti {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 1;
+}
+
+/* PÁGINAS SECUNDARIAS */
+
+.menu-secundario {
+    width: 100%;
+    padding: 18px 8%;
+    background: rgba(2, 6, 23, 0.92);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    position: relative;
+    z-index: 10;
+}
+
+.menu-secundario h1 {
+    color: white;
+    font-size: 24px;
+}
+
+.menu-secundario nav {
+    display: flex;
+    gap: 25px;
+}
+
+.menu-secundario nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.menu-secundario nav a:hover {
+    color: #38bdf8;
+}
+
+.portada-chatgpt {
+    min-height: 430px;
+    padding: 70px 8%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a, #0284c7, #38bdf8);
+
+    position: relative;
+    z-index: 5;
+}
+
+.portada-chatgpt img {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    background: #020617;
+    border-radius: 25px;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.portada-chatgpt h2 {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.portada-chatgpt p {
+    max-width: 850px;
+    margin: auto;
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+.boton-verde {
+    display: inline-block;
+    margin-top: 25px;
+    padding: 14px 30px;
+    background: #22c55e;
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: bold;
+    transition: 0.3s;
+
+    position: relative;
+    z-index: 25;
+}
+
+.boton-verde:hover {
+    background: white;
+    color: #020617;
+    transform: scale(1.07);
+}
+
+.pagina-secundaria {
+    width: 90%;
+    max-width: 1100px;
+    margin: 55px auto;
+    padding: 35px;
+    text-align: center;
+    border-radius: 25px;
+    background: rgba(15, 23, 42, 0.88);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+
+    position: relative;
+    z-index: 5;
+}
+
+.pagina-secundaria h2 {
+    color: #38bdf8;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+.galeria-secundaria {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.galeria-secundaria img {
+    width: 300px;
+    height: 210px;
+    object-fit: contain;
+    border-radius: 22px;
+    background: #020617;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.galeria-secundaria img:hover {
+    transform: scale(1.06);
+}
+
+.usos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.usos div {
+    background: #020617;
+    padding: 25px;
+    border-radius: 20px;
+    transition: 0.3s;
+}
+
+.usos div:hover {
+    transform: translateY(-8px);
+    background: #0f766e;
+}
+
+.usos h3 {
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    position: relative;
+    z-index: 5;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .contenedor {
+        width: 94%;
+    }
+
+    .encabezado h1 {
+        font-size: 28px;
+    }
+
+    .encabezado h2 {
+        font-size: 18px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tarjeta {
+        min-height: auto;
+    }
+
+    .tarjeta img {
+        width: 120px;
+        height: 120px;
+    }
+
+    iframe {
+        width: 100%;
+        height: 250px;
+    }
+
+    .imagenes img {
+        width: 100%;
+        height: 220px;
+    }
+
+    .menu-secundario {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .menu-secundario nav {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .portada-chatgpt h2 {
+        font-size: 34px;
+    }
+
+    .usos {
+        grid-template-columns: 1fr;
+   }
+   .logo-seccion {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    background: #020617;
+    padding: 10px;
+    border-radius: 25px;
+    margin-bottom: 20px;
+}
+
+.pagina-secundaria p {
+    max-width: 850px;
+    margin: auto;
+    line-height: 1.8;
+    font-size: 18px;
+}
+
+}
