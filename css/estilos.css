@@ -69,7 +69,7 @@ body {
     min-height: 100vh;
     padding: 140px 8% 90px;
     background:
-    linear-gradient(rgba(95, 105, 139, 0.78), rgba(145, 159, 199, 0.88)),
+    linear-gradient(rgba(58, 71, 119, 0.78), rgba(64, 23, 141, 0.88)),
     url("../img/fondo_portada_IA.webp");
     background-size: cover;
     background-position: center;
