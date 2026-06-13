@@ -5120,3 +5120,137 @@ footer a {
 .pagina-synthesia footer {
     background: #070817;
 }
+
+/* RESPONSIVE PARA CELULAR */
+
+@media (max-width: 600px) {
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .menu-detalle,
+    .menu-superior {
+        position: relative;
+        padding: 15px;
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .menu-detalle nav,
+    .menu-superior nav {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .menu-detalle nav a,
+    .menu-superior nav a {
+        margin: 0;
+        font-size: 13px;
+    }
+
+    .hero-chatgpt,
+    .hero-gemini,
+    .hero-claude,
+    .hero-qwen,
+    .hero-deepseek,
+    .hero-llama,
+    .hero-grok,
+    .hero-mistral,
+    .hero-meta,
+    .hero-hugging,
+    .hero-copilot,
+    .hero-perplexity,
+    .hero-pi,
+    .hero-youchat,
+    .hero-codeium,
+    .hero-blackbox,
+    .hero-phind,
+    .hero-tabnine,
+    .hero-midjourney,
+    .hero-dalle,
+    .hero-leonardo,
+    .hero-stable,
+    .hero-runway,
+    .hero-synthesia {
+        min-height: auto;
+        padding: 40px 18px;
+    }
+
+    .logo-circulo {
+        width: 90px;
+        height: 90px;
+        margin: auto;
+    }
+
+    section h1,
+    .hero-chatgpt h1,
+    .hero-gemini h1,
+    .hero-claude h1,
+    .hero-qwen h1 {
+        font-size: 34px;
+    }
+
+    section p,
+    .hero-chatgpt p,
+    .hero-gemini p,
+    .hero-claude p,
+    .hero-qwen p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .imagenes {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .imagenes img {
+        width: 100%;
+        height: auto;
+        max-height: 240px;
+        object-fit: cover;
+    }
+
+    iframe {
+        width: 100% !important;
+        height: 230px !important;
+    }
+
+    .seccion,
+    .pagina-secundaria,
+    .multimedia,
+    .contacto,
+    .datos,
+    .redes,
+    .iconos-finales,
+    .galeria-chatgpt,
+    .galeria-gemini,
+    .galeria-claude,
+    .galeria-qwen,
+    .galeria-deepseek,
+    .galeria-llama,
+    .galeria-grok,
+    .galeria-mistral,
+    .galeria-meta,
+    .galeria-hugging,
+    .galeria-copilot,
+    .galeria-perplexity,
+    .galeria-pi,
+    .galeria-youchat,
+    .galeria-codeium,
+    .galeria-blackbox,
+    .galeria-phind,
+    .galeria-tabnine,
+    .galeria-midjourney,
+    .galeria-dalle,
+    .galeria-leonardo,
+    .galeria-stable,
+    .galeria-runway,
+    .galeria-synthesia {
+        padding: 45px 18px;
+    }
+}
